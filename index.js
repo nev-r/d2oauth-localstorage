@@ -35,7 +35,8 @@ forceOverwrite) {
 export async function isOauthAlreadySetUp(client_id, bungieMembershipId) {
     if (!bungieMembershipId)
         bungieMembershipId = getLatestUsedBnetMember(client_id);
-    return Boolean(readTokenFromLocalStorage(client_id, bungieMembershipId));
+    return Boolean(bungieMembershipId &&
+        readTokenFromLocalStorage(client_id, bungieMembershipId));
 }
 const oauthKey = /^oauth_\d+_/;
 /** get all oauth-looking LS keys */
@@ -82,7 +83,7 @@ export function collectValidOauthsFromLocalStorage(client_id) {
 }
 export function getLatestUsedBnetMember(client_id) {
     const allValid = collectValidOauthsFromLocalStorage(client_id);
-    return allValid.sort((a, b) => b.expires_at - a.expires_at)[0].token
+    return allValid.sort((a, b) => b.expires_at - a.expires_at)[0]?.token
         .membership_id;
 }
 function looksLikeBnetTokenMeta(tokenMeta) {

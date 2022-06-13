@@ -37,4 +37,4 @@ export declare function isOauthAlreadySetUp(client_id: string, bungieMembershipI
 export declare function readTokenFromLocalStorage(client_id: string, bungieMembershipId: string): BungieNetTokenMeta | undefined;
 export declare function readTokenFromLocalStorageKey(lsKey: string): BungieNetTokenMeta | undefined;
 export declare function collectValidOauthsFromLocalStorage(client_id?: string): BungieNetTokenMeta[];
-export declare function getLatestUsedBnetMember(client_id: string): string;
+export declare function getLatestUsedBnetMember(client_id: string): string | undefined;
